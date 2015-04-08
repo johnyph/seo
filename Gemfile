@@ -41,14 +41,14 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  #Added by me!
-  gem 'bootstrap-sass', '~> 3.3.4'
-  gem 'devise'
-  gem 'devise-bootstrap-views'
-  gem 'font-awesome-sass', '~> 4.3.0'
-  gem 'will_paginate-bootstrap'
-  gem 'sunspot_rails'
-  gem 'sunspot_solr' 
 end
+
+#Added by me!
+gem 'bootstrap-sass', '~> 3.3.4'
+gem 'devise'
+gem 'devise-bootstrap-views'
+gem 'font-awesome-sass', '~> 4.3.0'
+gem 'will_paginate-bootstrap'
+gem 'sunspot_rails'
+gem 'sunspot_solr' 
 
