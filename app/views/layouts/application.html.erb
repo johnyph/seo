@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GoogleStats</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <%= flash_messages %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to 'Google Stats', root_path, class: 'navbar-brand' %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">
+                <strong>
+                  <%= icon('user')%>
+                  <%= current_user.email %>
+                </strong>
+              </a>
+            </li>
+            <li>
+
+              <%= link_to(icon('sign-out') + ' Logout', destroy_user_session_path, :method => :delete) %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <%= icon('upload')%> 
+            <%= link_to 'Upload CSV', root_path %>
+          </li>
+          <li class="list-group-item">
+            <%= icon('file')%> 
+            <%= link_to 'Reports', reports_path %>
+          </li>
+          <li class="list-group-item">
+            <%= icon('search')%> 
+            <%= link_to 'Queries', queries_path %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-9">  
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

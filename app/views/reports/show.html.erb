@@ -1,0 +1,147 @@
+<div class="panel panel-default login-form space-20">
+  <div class="panel-heading">
+    <h3 class="panel-title">Report: <%= @report.name %></h3>
+  </div>
+  <div class="panel-body">
+    <% @report.results.each do |result| %>
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-primary">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#colapse<%= result.id %>">
+                <%= result.keyword.name %>
+              </a>
+            </h4>
+          </div>
+          <div id="colapse<%= result.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">               
+              <div class = "row">
+                <div class = "col-sm-12">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">General Info</h3>
+                    </div>
+                    <div class="panel-body">
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table class="table">
+                            <tbody>
+                                <tr>
+                                  <td><strong>Total number of links</strong></td>
+                                  <td><%= result.total_links %></td> 
+                                </tr>
+                                <tr>
+                                  <td><strong>Total of search results</strong></td>
+                                  <td><%= result.total_search %></td>
+                                </tr>
+
+                                <tr>
+                                  <td><strong>Total Ads</strong></td>
+                                  <td><%= result.ad_total %></td>
+                                </tr>
+
+                                
+                            </tbody>
+                          </table>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#html<%= result.id %>">
+                            Show HTML
+                          </button>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="html<%= result.id %>" tabindex="-1" role="dialog" aria-labelledby="html<%= result.id %>Label" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="myModalLabel"><%= result.keyword.name %> HTML</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <%= result.code %>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="space-20"></div>
+              
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Top Ads: <%= result.ad_top %></h3>
+                    </div>
+                    <div class="panel-body">
+                      <table class="table">
+                        <tbody>
+                          <% result.top_ads.each do |ad| %>
+                          <tr>
+                            <td><%= ad.link %></td>
+                          </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Right Ads: <%= result.ad_right %></h3>
+                    </div>
+                    <div class="panel-body">
+                      <table class="table">
+                        <tbody>
+                          <% result.right_ads.each do |ad| %>
+                          <tr>
+                            <td><%= ad.link %></td>
+                          </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="space-20"></div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Links: <%= result.simple_results %></h3>
+                    </div>
+                    <div class="panel-body">
+                      <table class="table">
+                        <tbody>
+                          <% result.normal_links.each do |ad| %>
+                          <tr>
+                            <td><%= ad.link %></td>
+                          </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

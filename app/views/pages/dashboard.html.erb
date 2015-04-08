@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h3>Upload CSV</h5>
+</div>
+
+<%= form_tag upload_csv_path, multipart: true do %>
+  <div class="form-group">
+    <%= file_field_tag :file %>
+  </div>
+  <%= submit_tag "Import", class:"btn btn-primary" %>
+<% end %>

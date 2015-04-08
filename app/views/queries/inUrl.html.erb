@@ -1,0 +1,23 @@
+<div class="panel panel-default login-form space-20">
+  <div class="panel-heading">
+    <h3 class="panel-title">Results:  <%= @query.total %></h3>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <tbody>
+        <% @results.each do |result| %>
+          <tr>
+            <td><%= result.link %></td>
+            <td><%= link_to "Show info", link_info_path(result.id), class: "btn btn-primary btn-xs"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <%= will_paginate @results, renderer: BootstrapPagination::Rails %>
+      </tfoot>
+    </table>
+    <div class="space-20"></div>
+    <%= link_to "Queries", queries_path, class:"btn btn-primary" %>
+  </div>
+
+</div>

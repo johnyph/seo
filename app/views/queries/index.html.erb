@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Queries</h3>
+  </div>
+  <div class="panel-body">
+    <div role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#wordUrl" aria-controls="home" role="tab" data-toggle="tab">word/URL</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Keywords with URL 2+/, 1+></a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="wordUrl">
+          <p>
+            <p> Find keyword occurence in URL's </p>
+            <%= form_tag in_url_path, :method => 'get', class: 'form-inline' do %>
+              <p>
+                <%= text_field_tag :search, params[:search], class: "form-control" %>
+                <%= submit_tag "Search", :name => nil, class: "btn btn-primary" %>
+              </p>
+            <% end %>
+          </p>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="profile">
+          <div class="space-20"></div>
+          <div class="row">
+            <div class="col-sm-6">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">2+ Slashes(/)</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tbody>
+                    <% @slashedKeywords.each do |keyword| %>
+                      <tr>
+                        <td><%= keyword.name %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                  <tfoot>
+                    <%= will_paginate @slashedKeywords, renderer: BootstrapPagination::Rails %>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">1+ Caret(›)</h3>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped">
+                  <tbody>
+                    <% @caretKeywords.each do |keyword| %>
+                      <tr>
+                        <td><%= keyword.name %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                  <tfoot>
+                    <%= will_paginate @caretKeywords, renderer: BootstrapPagination::Rails %>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
