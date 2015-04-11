@@ -41,7 +41,7 @@ class PagesController < ApplicationController
         simple_results: page.normal_results_length,
         total_links: page.normal_results_length + page.top_ads.length + page.right_ads.length,
         total_search: page.top_stats,
-        code: page.page_html,
+        code: ActionController::Base.helpers.sanitize(page.page_html),
       })
 
       result.keyword = keyword
@@ -70,6 +70,6 @@ class PagesController < ApplicationController
       report.results << result
     end
     report.save
-    redirect_to root_path, :flash => { :success => "Report was created !!!" }
+    redirect_to report_path(report.id), :flash => { :success => "Report was created !!!" }
   end
 end
